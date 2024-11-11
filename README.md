@@ -9,7 +9,6 @@
   - Reveals dialog starters
   - Reveals radiation zones
   - Reveals relics
-  - Reveals map areas
 - **City Tooltips Patch**:
   - Displays city building names
 

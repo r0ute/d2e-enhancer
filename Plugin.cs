@@ -20,15 +20,22 @@ public class Plugin : BaseUnityPlugin
         Logger = base.Logger;
         Harmony harmony = new(MyPluginInfo.PLUGIN_GUID);
 
-        TogglePatch(harmony, typeof(MapUIPatch), out EnableMapUIPatch);
-        TogglePatch(harmony, typeof(UIMapCityTipPatch), out EnableUIMapCityTipPatch);
+        TogglePatch(harmony, typeof(MapUIPatch), out EnableMapUIPatch,
+        @"**Map UI Patch**:
+            - Reveals cities
+            - Reveals dialog starters
+            - Reveals radiation zones
+            - Reveals relics");
+        TogglePatch(harmony, typeof(UIMapCityTipPatch), out EnableUIMapCityTipPatch,
+        @"**City Tooltips Patch**:
+            - Displays city building names");
 
         Logger.LogInfo($"Plugin loaded");
     }
 
-    private void TogglePatch(Harmony harmony, Type type, out ConfigEntry<bool> configEntry)
+    private void TogglePatch(Harmony harmony, Type type, out ConfigEntry<bool> configEntry, string description)
     {
-        configEntry = Config.Bind("Features (game restart is required)", type.Name, true, $"Whether or not to enable {type} Patch");
+        configEntry = Config.Bind("Features", type.Name, true, description);
 
         if (configEntry.Value)
         {
