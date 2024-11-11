@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net46</TargetFramework>
     <AssemblyName>com.bepinex.plugins.d2e.enhancer</AssemblyName>
-    <Product>D2E Ehancer Plugin</Product>
+    <Product>D2E Enhancer Plugin</Product>
     <Version>1.0.0</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>

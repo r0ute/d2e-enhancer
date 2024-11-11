@@ -13,7 +13,7 @@ public class MapUIPatch
         if (!city.m_bDiscovered)
         {
             __instance.AddCity(city);
-            Logger.LogInfo($"Show City: {city.TownName}");
+            Logger.LogDebug($"Show City: {city.TownName}");
         }
     }
 
@@ -24,7 +24,7 @@ public class MapUIPatch
         if (starter.gameObject.activeSelf && !starter.ShowInMap)
         {
             __instance.AddMapDialogueStarter(starter);
-            Logger.LogInfo($"Show MapDialogueStarter: {starter.m_ShowName}");
+            Logger.LogDebug($"Show MapDialogueStarter: {starter.m_ShowName}");
         }
     }
 
@@ -35,7 +35,7 @@ public class MapUIPatch
         if (!area.m_bDisCovered)
         {
             __instance.AddRadiationArea(area);
-            Logger.LogInfo($"Show RadiationArea: {area.m_AreaID}");
+            Logger.LogDebug($"Show RadiationArea: {area.m_AreaID}");
         }
     }
 
@@ -46,7 +46,7 @@ public class MapUIPatch
         if (!relic.Discovered)
         {
             __instance.AddRelic(relic);
-            Logger.LogInfo($"Show SingleRelic: {relic.m_RelicName}");
+            Logger.LogDebug($"Show SingleRelic: {relic.m_RelicName}");
         }
     }
 }
