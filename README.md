@@ -1,5 +1,8 @@
 # D2E Enhancer
 
+<iframe src="https://store.steampowered.com/widget/1074070/" frameborder="0" width="100%" height="190">
+</iframe>
+
 **D2E Enhancer** is a [BepInEx](https://docs.bepinex.dev) plugin for the game _Dust to the End_. This plugin enhances gameplay by providing various improvements to the game map.
 
 ## Features
