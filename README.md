@@ -4,11 +4,13 @@
 
 ## Features
 
-- **Map UI Enhancements**:
-  - Reveal cities
-  - Reveal dialog starters
-  - Reveal radiation areas
-  - Reveal relics
+- **Map UI Patch**:
+  - Reveals cities
+  - Reveals dialog starters
+  - Reveals radiation zones
+  - Reveals relics
+- **City Tooltips Patch**:
+  - Displays city building names
 
 ## Getting Started
 
