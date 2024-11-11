@@ -11,7 +11,6 @@ public class Plugin : BaseUnityPlugin
 
     private void Awake()
     {
-        // Plugin startup logic
         Logger = base.Logger;
         Harmony harmony = new(MyPluginInfo.PLUGIN_GUID);
         harmony.PatchAll(typeof(MapUIPatch));
@@ -28,6 +27,7 @@ public class Plugin : BaseUnityPlugin
             if (!city.m_bDiscovered)
             {
                 __instance.AddCity(city);
+                Logger.LogInfo($"Show City: {city.TownName}");
             }
         }
 
@@ -35,11 +35,36 @@ public class Plugin : BaseUnityPlugin
         [HarmonyPostfix]
         static void OnHideMapDialogueStarter(MapDialogueStarter starter, ref MapUI __instance)
         {
-            if (starter.gameObject.activeSelf)
+            if (starter.gameObject.activeSelf && !starter.ShowInMap)
             {
                 __instance.AddMapDialogueStarter(starter);
+                Logger.LogInfo($"Show MapDialogueStarter: {starter.m_ShowName}");
             }
         }
+
+        [HarmonyPatch(typeof(MapUI), nameof(MapUI.HideRadiationArea))]
+        [HarmonyPostfix]
+        static void OnHideRadiationArea(RadiationArea area, ref MapUI __instance)
+        {
+            if (!area.m_bDisCovered)
+            {
+                __instance.AddRadiationArea(area);
+                Logger.LogInfo($"Show RadiationArea: {area.m_AreaID}");
+            }
+        }
+
+        [HarmonyPatch(typeof(MapUI), nameof(MapUI.HideRelic))]
+        [HarmonyPostfix]
+        static void OnHideRelic(SingleRelic relic, ref MapUI __instance)
+        {
+            if (!relic.Discovered)
+            {
+                __instance.AddRelic(relic);
+                Logger.LogInfo($"Show SingleRelic: {relic.m_RelicName}");
+            }
+        }
+
+
 
     }
 }

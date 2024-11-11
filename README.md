@@ -5,8 +5,10 @@
 ## Features
 
 - **Map UI Enhancements**:
-  - Reveal hidden cities
+  - Reveal cities
   - Reveal dialog starters
+  - Reveal radiation areas
+  - Reveal relics
 
 ## Getting Started
 
