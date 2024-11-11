@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net46</TargetFramework>
-    <AssemblyName>D2E</AssemblyName>
-    <Product>My first plugin</Product>
+    <AssemblyName>com.bepinex.plugins.d2e.enhancer</AssemblyName>
+    <Product>D2E Ehancer Plugin</Product>
     <Version>1.0.0</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
@@ -21,14 +21,15 @@
     <PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
     <PackageReference Include="UnityEngine.Modules" Version="2020.3.33" IncludeAssets="compile" />
   </ItemGroup>
-  
+
   <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2"
+      PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>
-  <Reference Include="MyAssembly">
-    <HintPath>c:\Games\Dust to the End\Dust to the End_Data\Managed\Assembly-CSharp.dll</HintPath>
-  </Reference>
-</ItemGroup>
+    <Reference Include="D2EAssembly" Private="false">
+      <HintPath>c:\Games\Dust to the End\Dust to the End_Data\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>

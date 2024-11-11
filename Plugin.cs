@@ -1,6 +1,7 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
+using System.Reflection;
 
 namespace D2E;
 
@@ -8,15 +9,38 @@ namespace D2E;
 public class Plugin : BaseUnityPlugin
 {
     internal static new ManualLogSource Logger;
-        
+
     private void Awake()
     {
         // Plugin startup logic
         Logger = base.Logger;
-        Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
+        Harmony harmony = new(MyPluginInfo.PLUGIN_GUID);
+        harmony.PatchAll(typeof(MapUIPatch));
+        Logger.LogInfo($"Plugin loaded");
     }
 
-    static void onHideCity(TiggerStop city) {
+    class MapUIPatch
+    {
+
+        [HarmonyPatch(typeof(MapUI), nameof(MapUI.HideCity))]
+        [HarmonyPostfix]
+        static void OnHideCity(TiggerStop city, ref MapUI __instance)
+        {
+            if (!city.m_bDiscovered)
+            {
+                __instance.AddCity(city);
+            }
+        }
+
+        [HarmonyPatch(typeof(MapUI), nameof(MapUI.HideMapDialogueStarter))]
+        [HarmonyPostfix]
+        static void OnHideMapDialogueStarter(MapDialogueStarter starter, ref MapUI __instance)
+        {
+            if (starter.gameObject.activeSelf)
+            {
+                __instance.AddMapDialogueStarter(starter);
+            }
+        }
 
     }
 }
