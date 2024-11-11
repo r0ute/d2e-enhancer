@@ -53,4 +53,15 @@ public class MapUIPatch
             Logger.LogDebug($"Show SingleRelic: {relic.m_RelicName}");
         }
     }
+
+    [HarmonyPatch(typeof(MapUI), nameof(MapUI.UnLocked))]
+    [HarmonyPrefix]
+    static void OnUnLocked(UIMapAreaBlock block, ref bool __runOriginal, ref bool __result)
+    {
+        __runOriginal = false;
+        __result = true;
+        Logger.LogDebug($"Unlock UIMapAreaBlock: {block}");
+    }
+
+
 }

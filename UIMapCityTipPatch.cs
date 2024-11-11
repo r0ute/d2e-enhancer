@@ -13,8 +13,7 @@ public class UIMapCityTipPatch
     static void OnSetInfo(string cityid, ref UIMapCityTip __instance)
     {
 
-        TiggerStop value = null;
-        if (Town.m_Cities.TryGetValue(cityid, out value))
+        if (Town.m_Cities.TryGetValue(cityid, out TiggerStop value))
         {
             __instance.m_CityName.text = value.TownName + AddBuildingPositions(value.Config);
             Logger.LogDebug($"SetInfo for City: {cityid}");
@@ -30,14 +29,14 @@ public class UIMapCityTipPatch
     {
         string result = "";
 
-        if (config.BuildingPos.Length < 2)
+        if (config.BuildingPos.Length <= 1)
         {
             return result;
         }
 
-        foreach (int position in config.BuildingPos)
+        foreach (int position in config.Building)
         {
-            if (position == 1) continue; // Shop
+            if (position == 1) continue; // ignore Shop that every city has
 
             result += "\n - " + LanguageManager.Instance.GetKey("BuildingDesc_" + position);
         }
