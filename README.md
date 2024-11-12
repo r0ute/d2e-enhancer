@@ -1,6 +1,6 @@
 # D2E Enhancer
 
-**D2E Enhancer** is a [BepInEx](https://docs.bepinex.dev) plugin for the game _Dust to the End_. This plugin enhances gameplay by providing various improvements to the game map.
+**D2E Enhancer** is a [BepInEx](https://docs.bepinex.dev) plugin for the game _Dust to the End_. It enriches gameplay by providing a more informative map interface, detailed city information, and improved trade tracking.
 
 ## Features
 
