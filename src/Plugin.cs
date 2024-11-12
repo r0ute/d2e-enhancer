@@ -27,19 +27,16 @@ namespace D2E.src
             Harmony harmony = new(MyPluginInfo.PLUGIN_GUID);
 
             TogglePatch(harmony, typeof(MapUIPatch), out EnableMapUIPatch,
-            @"**Map UI Patch**:
-            - Reveals cities
-            - Reveals dialog starters
-            - Reveals radiation zones
-            - Reveals relics");
+            @"**Map UI Enhancements**:
+                - Reveal cities, dialog starters, radiation zones, and relics on the map for easier navigation and discovery");
             TogglePatch(harmony, typeof(UIMapCityTipPatch), out EnableUIMapCityTipPatch,
-            @"**City Tooltips Patch**:
-            - Displays city building names");
+            @"**City Tooltips**:
+                - Display building names within cities to provide a clearer view of available facilities");
             TogglePatch(harmony, typeof(BigTablePatch), out EnableBigTablePatch,
-            @"**Core Patch**:
-            - Configures trade log limit");
+            @"**Core Gameplay Improvements**:
+                - Increase the trade log item limit for better tracking of transactions");
             MaxTradeLogSize = Config.Bind(typeof(BigTablePatch).Name, "MaxTradeLogSize", 5,
-             new ConfigDescription("Maximum size of trade log", new AcceptableValueRange<int>(1, 10)));
+             new ConfigDescription("Maximum number of items the trade log can store", new AcceptableValueRange<int>(1, 10)));
 
             Logger.LogInfo($"Plugin loaded");
         }

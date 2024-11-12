@@ -4,13 +4,12 @@
 
 ## Features
 
-- **Map UI Patch**:
-  - Reveals cities
-  - Reveals dialog starters
-  - Reveals radiation zones
-  - Reveals relics
-- **City Tooltips Patch**:
-  - Displays city building names
+- **Map UI Enhancements**:
+  - Reveal cities, dialog starters, radiation zones, and relics on the map for easier navigation and discovery
+- **City Tooltips**:
+  - Display building names within cities to provide a clearer view of available facilities
+- **Core Gameplay Improvements**:
+  - Increase the trade log item limit for better tracking of transactions
 
 ## Getting Started
 

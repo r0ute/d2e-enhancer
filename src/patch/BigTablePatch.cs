@@ -40,10 +40,11 @@ namespace D2E.src.patch
                 num++;
             }
 
-            Plugin.Logger.LogDebug($"BigTable: MaxTradeLogSize {Plugin.MaxTradeLogSize.Value}");
+            Plugin.Logger.LogDebug($"BigTable: AddItemBuyInfo MaxTradeLogSize {Plugin.MaxTradeLogSize.Value}");
 
             if (__instance.m_ItemBuyInfo[itemid].Count >= Plugin.MaxTradeLogSize.Value)
             {
+                Plugin.Logger.LogDebug($"BigTable: AddItemBuyInfo RemoveAt(0) {itemid}");
                 __instance.m_ItemBuyInfo[itemid].RemoveAt(0);
             }
 
@@ -93,11 +94,12 @@ namespace D2E.src.patch
                 num++;
             }
 
-            Plugin.Logger.LogDebug($"BigTable: MaxTradeLogSize {Plugin.MaxTradeLogSize.Value}");
+            Plugin.Logger.LogDebug($"BigTable: AddItemSellInfo MaxTradeLogSize {Plugin.MaxTradeLogSize.Value}");
 
             if (__instance.m_ItemSellInfo[itemid].Count >= Plugin.MaxTradeLogSize.Value)
             {
                 __instance.m_ItemSellInfo[itemid].RemoveAt(0);
+                Plugin.Logger.LogDebug($"BigTable: AddItemSellInfo RemoveAt(0) {itemid}");
             }
 
             ItemTradeInfo itemTradeInfo2 = new()
