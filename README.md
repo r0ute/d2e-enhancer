@@ -6,10 +6,9 @@
 
 - **Map UI Enhancements**:
   - Reveal cities, dialog starters, radiation zones, and relics on the map for easier navigation and discovery
-- **City Tooltips**:
   - Display building names within cities to provide a clearer view of available facilities
-- **Core Gameplay Improvements**:
-  - Increase the trade log item limit for better tracking of transactions
+- **Trade Information Enhancements**:
+  - Increase the trade log size limit, allowing for better tracking of recent transactions
 
 ## Getting Started
 

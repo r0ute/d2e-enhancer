@@ -17,9 +17,7 @@ namespace D2E.src
 
         private ConfigEntry<bool> EnableMapUIPatch;
 
-        private ConfigEntry<bool> EnableUIMapCityTipPatch;
-
-        private ConfigEntry<bool> EnableBigTablePatch;
+        private ConfigEntry<bool> EnableTradeInfoPatch;
 
         private void Awake()
         {
@@ -28,14 +26,12 @@ namespace D2E.src
 
             TogglePatch(harmony, typeof(MapUIPatch), out EnableMapUIPatch,
             @"**Map UI Enhancements**:
-                - Reveal cities, dialog starters, radiation zones, and relics on the map for easier navigation and discovery");
-            TogglePatch(harmony, typeof(UIMapCityTipPatch), out EnableUIMapCityTipPatch,
-            @"**City Tooltips**:
+                - Reveal cities, dialog starters, radiation zones, and relics on the map for easier navigation and discovery
                 - Display building names within cities to provide a clearer view of available facilities");
-            TogglePatch(harmony, typeof(BigTablePatch), out EnableBigTablePatch,
-            @"**Core Gameplay Improvements**:
-                - Increase the trade log item limit for better tracking of transactions");
-            MaxTradeLogSize = Config.Bind(typeof(BigTablePatch).Name, "MaxTradeLogSize", 5,
+            TogglePatch(harmony, typeof(TradeInfoPatch), out EnableTradeInfoPatch,
+            @"**Trade Information Enhancements**:
+                - Increase the trade log size limit, allowing for better tracking of recent transactions");
+            MaxTradeLogSize = Config.Bind(typeof(TradeInfoPatch).Name, "MaxTradeLogSize", 5,
              new ConfigDescription("Maximum number of items the trade log can store", new AcceptableValueRange<int>(1, 10)));
 
             Logger.LogInfo($"Plugin loaded");
@@ -43,7 +39,7 @@ namespace D2E.src
 
         private void TogglePatch(Harmony harmony, Type type, out ConfigEntry<bool> configEntry, string description)
         {
-            configEntry = Config.Bind("*Features* (restart required)", type.Name, true, description);
+            configEntry = Config.Bind("*Features*", type.Name, true, description);
 
             if (configEntry.Value)
             {

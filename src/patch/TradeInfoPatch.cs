@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace D2E.src.patch
 {
-    public class BigTablePatch
+    public class TradeInfoPatch
     {
 
         [HarmonyPatch(typeof(BigTable), nameof(BigTable.AddItemBuyInfo))]
