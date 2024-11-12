@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
@@ -12,11 +13,13 @@ namespace D2E.src
     {
         internal static new ManualLogSource Logger;
 
+        internal static ConfigEntry<int> MaxTradeLogSize;
+
         private ConfigEntry<bool> EnableMapUIPatch;
 
         private ConfigEntry<bool> EnableUIMapCityTipPatch;
 
-        internal static ConfigEntry<bool> EnableBigTablePatch;
+        private ConfigEntry<bool> EnableBigTablePatch;
 
         private void Awake()
         {
@@ -35,13 +38,15 @@ namespace D2E.src
             TogglePatch(harmony, typeof(BigTablePatch), out EnableBigTablePatch,
             @"**Core Patch**:
             - Configures trade log limit");
+            MaxTradeLogSize = Config.Bind(typeof(BigTablePatch).Name, "MaxTradeLogSize", 5,
+             new ConfigDescription("Maximum size of trade log", new AcceptableValueRange<int>(1, 10)));
 
             Logger.LogInfo($"Plugin loaded");
         }
 
         private void TogglePatch(Harmony harmony, Type type, out ConfigEntry<bool> configEntry, string description)
         {
-            configEntry = Config.Bind("Features", type.Name, true, description);
+            configEntry = Config.Bind("*Features* (restart required)", type.Name, true, description);
 
             if (configEntry.Value)
             {

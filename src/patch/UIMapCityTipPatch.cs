@@ -1,4 +1,3 @@
-using BepInEx.Logging;
 using HarmonyLib;
 using UnityEngine.UI;
 
@@ -15,7 +14,7 @@ namespace D2E.src.patch
             if (Town.m_Cities.TryGetValue(cityid, out TiggerStop value))
             {
                 __instance.m_CityName.text = value.TownName + AddBuildingPositions(value.Config);
-                Plugin.Logger.LogDebug($"SetInfo for City: {cityid}");
+                Plugin.Logger.LogDebug($"UIMapCityTip: SetInfo for City {cityid}");
 
                 LayoutRebuilder.ForceRebuildLayoutImmediate(__instance.m_SelfRect);
                 LayoutRebuilder.ForceRebuildLayoutImmediate(__instance.m_GoodsRect);

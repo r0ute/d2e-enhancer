@@ -1,4 +1,3 @@
-using BepInEx.Logging;
 using HarmonyLib;
 
 namespace D2E.src.patch
@@ -14,7 +13,7 @@ namespace D2E.src.patch
             {
                 __runOriginal = false;
                 __instance.AddCity(city);
-                Plugin.Logger.LogDebug($"Show City: {city.TownName}");
+                Plugin.Logger.LogDebug($"MapUI: AddCity {city.TownName}");
             }
         }
 
@@ -26,7 +25,7 @@ namespace D2E.src.patch
             {
                 __runOriginal = false;
                 __instance.AddMapDialogueStarter(starter);
-                Plugin.Logger.LogDebug($"Show MapDialogueStarter: {starter.m_ShowName}");
+                Plugin.Logger.LogDebug($"MapUI: AddMapDialogueStarter {starter.m_ShowName}");
             }
         }
 
@@ -38,7 +37,7 @@ namespace D2E.src.patch
             {
                 __runOriginal = false;
                 __instance.AddRadiationArea(area);
-                Plugin.Logger.LogDebug($"Show RadiationArea: {area.m_AreaID}");
+                Plugin.Logger.LogDebug($"MapUI: AddRadiationArea {area.m_AreaID}");
             }
         }
 
@@ -50,7 +49,7 @@ namespace D2E.src.patch
             {
                 __runOriginal = false;
                 __instance.AddRelic(relic);
-                Plugin.Logger.LogDebug($"Show SingleRelic: {relic.m_RelicName}");
+                Plugin.Logger.LogDebug($"MapUI: AddRelic {relic.m_RelicName}");
             }
         }
 
