@@ -28,17 +28,16 @@ namespace D2E.src.patch
             Plugin.Logger.LogDebug($"BigTable: AddItemSellInfo item={itemid}, Count={__instance.m_ItemSellInfo[itemid].Count}");
         }
 
-        private static void AddItemTradeInfo(string itemid, string cityid, float price, ref Dictionary<string,
-         List<ItemTradeInfo>> itemTradeInfos)
+        private static void AddItemTradeInfo(string itemid, string cityid, float price,
+                ref Dictionary<string, List<ItemTradeInfo>> itemTradeInfos)
         {
             if (!itemTradeInfos.ContainsKey(itemid))
             {
-                ItemTradeInfo itemTradeInfo = new()
+                itemTradeInfos[itemid] = [new()
                 {
                     m_CityID = cityid,
                     m_Price = price
-                };
-                itemTradeInfos[itemid] = new List<ItemTradeInfo>() { itemTradeInfo };
+                }];
             }
 
             int num = 0;
@@ -65,12 +64,11 @@ namespace D2E.src.patch
                 itemTradeInfos[itemid].RemoveAt(0);
             }
 
-            ItemTradeInfo itemTradeInfo2 = new()
+            itemTradeInfos[itemid].Add(new()
             {
                 m_CityID = cityid,
                 m_Price = price
-            };
-            itemTradeInfos[itemid].Add(itemTradeInfo2);
+            });
         }
 
         [HarmonyPatch(typeof(InfoBoxUI), nameof(InfoBoxUI.AwakeFunction))]
