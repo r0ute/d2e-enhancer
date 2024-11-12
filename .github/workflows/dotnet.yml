@@ -28,8 +28,8 @@ jobs:
       run: dotnet test --no-build --verbosity normal
     - name: Publish
       run: dotnet publish -c Release --no-restore
-    - name: Upload
-      uses: actions/upload-artifact@v4
+    - name: Release
+      uses: softprops/action-gh-release@v2
+      if: startsWith(github.ref, 'refs/tags/')
       with:
-        name: com.bepinex.plugins.d2e.enhancer
-        path: ~/work/d2e-enhancer/d2e-enhancer/bin/Release/net46/publish/com.bepinex.plugins.d2e.enhancer.dll
+        files: ~/work/d2e-enhancer/d2e-enhancer/bin/Release/net46/publish/com.bepinex.plugins.d2e.enhancer.dll
