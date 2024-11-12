@@ -87,9 +87,9 @@ namespace D2E.src.patch
             {
                 Array.Resize(ref tradeInfoObj, Plugin.MaxTradeLogSize.Value);
 
-                if (tradeInfoObj.Length > 3)
+                if (tradeInfoObj.Length > Defines.Max_Item_Trade_Info)
                 {
-                    for (int ind = 3; ind < tradeInfoObj.Length; ind++)
+                    for (int ind = Defines.Max_Item_Trade_Info; ind < tradeInfoObj.Length; ind++)
                     {
                         tradeInfoObj[ind] = UnityEngine.Object.Instantiate(tradeInfoObj[0], parent, false);
                     }
