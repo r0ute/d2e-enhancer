@@ -32,4 +32,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: com.bepinex.plugins.d2e.enhancer
-        path: ~/work/d2e-enhancer/d2e-enhancer/bin/Release/net46/com.bepinex.plugins.d2e.enhancer.dll
+        path: ~/work/d2e-enhancer/d2e-enhancer/bin/Release/net46/publish/com.bepinex.plugins.d2e.enhancer.dll
