@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using Devdog.InventoryPro;
 using HarmonyLib;
+using UnityEngine.UI;
 
 namespace D2E.src.patch
 {
@@ -100,14 +102,82 @@ namespace D2E.src.patch
         [HarmonyPrefix]
         static void OnBuyTip(ref InfoBoxUI __instance)
         {
-            Plugin.Logger.LogDebug($"InfoBoxUI: BuyTip {__instance.m_BuyInfoObj.Length}");
+            UnitySingleton<BigTable>.Instance.m_ItemBuyInfo.TryGetValue("ITC004001", out List<ItemTradeInfo> value);
+            Plugin.Logger.LogDebug($"InfoBoxUI: BuyTip Water Count {value.Count}");
+            Plugin.Logger.LogDebug($"InfoBoxUI: BuyTip Length {__instance.m_BuyInfoObj.Length}");
         }
 
         [HarmonyPatch(typeof(InfoBoxUI), "SellTip")]
         [HarmonyPrefix]
         static void OnSellTip(ref InfoBoxUI __instance)
         {
-            Plugin.Logger.LogDebug($"InfoBoxUI: SellTip {__instance.m_BuyInfoObj.Length}");
+            UnitySingleton<BigTable>.Instance.m_ItemSellInfo.TryGetValue("ITC004001", out List<ItemTradeInfo> value);
+            Plugin.Logger.LogDebug($"InfoBoxUI: SellTip Water Count {value.Count}");
+            Plugin.Logger.LogDebug($"InfoBoxUI: SellTip Length {__instance.m_SellInfoObj.Length}");
+        }
+
+        [HarmonyPatch(typeof(InfoBoxUI), nameof(InfoBoxUI.AwakeFunction))]
+        [HarmonyPrefix]
+        static void BeforeAwake(ref InfoBoxUI __instance)
+        {
+            Plugin.Logger.LogDebug($"BeforeAwake: m_BuyInfoObj Length {__instance.m_BuyInfoObj.Length}");
+            foreach (CommonObj obj in __instance.m_BuyInfoObj)
+            {
+                Plugin.Logger.LogDebug($"BeforeAwake: m_BuyInfoObj {obj.m_nID}");
+            }
+
+            Plugin.Logger.LogDebug($"BeforeAwake: m_SellInfoObj Length {__instance.m_SellInfoObj.Length}");
+            foreach (CommonObj obj in __instance.m_SellInfoObj)
+            {
+                Plugin.Logger.LogDebug($"BeforeAwake: m_SellInfoObj {obj.m_nID}");
+            }
+
+            if (__instance.m_BuyInfoObj.Length > 0)
+            {
+                Array.Resize(ref __instance.m_BuyInfoObj, Plugin.MaxTradeLogSize.Value);
+
+                if (__instance.m_BuyInfoObj.Length > 3)
+                {
+                    for (int ind = 3; ind < __instance.m_BuyInfoObj.Length; ind++)
+                    {
+                        __instance.m_BuyInfoObj[ind] = UnityEngine.Object.Instantiate(__instance.m_BuyInfoObj[0],
+                         __instance.m_BuyObj, false);
+                    }
+                }
+
+            }
+            Array.Resize(ref __instance.m_SellInfoObj, Plugin.MaxTradeLogSize.Value);
+            if (__instance.m_SellInfoObj.Length > 0)
+            {
+                Array.Resize(ref __instance.m_SellInfoObj, Plugin.MaxTradeLogSize.Value);
+
+                if (__instance.m_SellInfoObj.Length > 3)
+                {
+                    for (int ind = 3; ind < __instance.m_SellInfoObj.Length; ind++)
+                    {
+                        __instance.m_SellInfoObj[ind] = UnityEngine.Object.Instantiate(__instance.m_SellInfoObj[0],
+                        __instance.m_SellObj, false);
+                    }
+                }
+
+            }
+        }
+
+        [HarmonyPatch(typeof(InfoBoxUI), nameof(InfoBoxUI.AwakeFunction))]
+        [HarmonyPostfix]
+        static void AfterAwake(ref InfoBoxUI __instance)
+        {
+
+            Plugin.Logger.LogDebug($"AfterAwake: m_BuyInfoObj Length {__instance.m_BuyInfoObj.Length}");
+            foreach (CommonObj obj in __instance.m_BuyInfoObj)
+            {
+                Plugin.Logger.LogDebug($"AfterAwake: m_BuyInfoObj {obj.m_nID}");
+            }
+            Plugin.Logger.LogDebug($"AfterAwake: m_SellInfoObj Length{__instance.m_SellInfoObj.Length}");
+            foreach (CommonObj obj in __instance.m_SellInfoObj)
+            {
+                Plugin.Logger.LogDebug($"AfterAwake: m_SellInfoObj {obj.m_nID}");
+            }
         }
     }
 }
