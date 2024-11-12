@@ -29,10 +29,10 @@
 
   <ItemGroup>
     <Reference Include="D2EAssembly" Private="false">
-      <HintPath>c:\Games\Dust to the End\Dust to the End_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath>lib\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI" Private="false">
-      <HintPath>c:\Games\Dust to the End\Dust to the End_Data\Managed\UnityEngine.UI.dll</HintPath>
+      <HintPath>lib\Managed\UnityEngine.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
 
