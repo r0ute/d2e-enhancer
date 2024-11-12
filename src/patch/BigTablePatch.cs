@@ -18,14 +18,16 @@ namespace D2E.src.patch
 
             if (!__instance.m_ItemBuyInfo.ContainsKey(itemid))
             {
-                ItemTradeInfo itemTradeInfo = new ItemTradeInfo();
-                itemTradeInfo.m_CityID = cityid;
-                itemTradeInfo.m_Price = price;
-                __instance.m_ItemBuyInfo[itemid] = new List<ItemTradeInfo>();
-                __instance.m_ItemBuyInfo[itemid].Add(itemTradeInfo);
-                return;
+                ItemTradeInfo itemTradeInfo = new()
+                {
+                    m_CityID = cityid,
+                    m_Price = price
+                };
+                __instance.m_ItemBuyInfo[itemid] = new List<ItemTradeInfo>() { itemTradeInfo };
             }
+
             int num = 0;
+
             while (num < __instance.m_ItemBuyInfo[itemid].Count)
             {
                 if (__instance.m_ItemBuyInfo[itemid][num] == null)
@@ -33,20 +35,26 @@ namespace D2E.src.patch
                     __instance.m_ItemBuyInfo[itemid].RemoveAt(num);
                     continue;
                 }
+
                 if (__instance.m_ItemBuyInfo[itemid][num].m_CityID == cityid)
                 {
                     __instance.m_ItemBuyInfo[itemid].RemoveAt(num);
                     break;
                 }
+
                 num++;
             }
+
             if (__instance.m_ItemBuyInfo[itemid].Count >= Plugin.MaxTradeLogSize.Value)
             {
                 __instance.m_ItemBuyInfo[itemid].RemoveAt(0);
             }
-            ItemTradeInfo itemTradeInfo2 = new ItemTradeInfo();
-            itemTradeInfo2.m_CityID = cityid;
-            itemTradeInfo2.m_Price = price;
+
+            ItemTradeInfo itemTradeInfo2 = new()
+            {
+                m_CityID = cityid,
+                m_Price = price
+            };
             __instance.m_ItemBuyInfo[itemid].Add(itemTradeInfo2);
             Plugin.Logger.LogDebug($"BigTable: AddItemBuyInfo item={itemid}, Count={__instance.m_ItemBuyInfo[itemid].Count}");
 
@@ -57,16 +65,19 @@ namespace D2E.src.patch
         static void OnAddItemSellInfo(string itemid, string cityid, float price, ref BigTable __instance, ref bool __runOriginal)
         {
             __runOriginal = false;
+
             if (!__instance.m_ItemSellInfo.ContainsKey(itemid))
             {
-                ItemTradeInfo itemTradeInfo = new ItemTradeInfo();
-                itemTradeInfo.m_CityID = cityid;
-                itemTradeInfo.m_Price = price;
-                __instance.m_ItemSellInfo[itemid] = new List<ItemTradeInfo>();
-                __instance.m_ItemSellInfo[itemid].Add(itemTradeInfo);
-                return;
+                ItemTradeInfo itemTradeInfo = new()
+                {
+                    m_CityID = cityid,
+                    m_Price = price
+                };
+                __instance.m_ItemSellInfo[itemid] = new List<ItemTradeInfo>() { itemTradeInfo };
             }
+
             int num = 0;
+
             while (num < __instance.m_ItemSellInfo[itemid].Count)
             {
                 if (__instance.m_ItemSellInfo[itemid][num] == null)
@@ -74,20 +85,26 @@ namespace D2E.src.patch
                     __instance.m_ItemSellInfo[itemid].RemoveAt(num);
                     continue;
                 }
+
                 if (__instance.m_ItemSellInfo[itemid][num].m_CityID == cityid)
                 {
                     __instance.m_ItemSellInfo[itemid].RemoveAt(num);
                     break;
                 }
+
                 num++;
             }
+
             if (__instance.m_ItemSellInfo[itemid].Count >= Plugin.MaxTradeLogSize.Value)
             {
                 __instance.m_ItemSellInfo[itemid].RemoveAt(0);
             }
-            ItemTradeInfo itemTradeInfo2 = new ItemTradeInfo();
-            itemTradeInfo2.m_CityID = cityid;
-            itemTradeInfo2.m_Price = price;
+
+            ItemTradeInfo itemTradeInfo2 = new()
+            {
+                m_CityID = cityid,
+                m_Price = price
+            };
             __instance.m_ItemSellInfo[itemid].Add(itemTradeInfo2);
             Plugin.Logger.LogDebug($"BigTable: AddItemSellInfo item={itemid}, Count={__instance.m_ItemSellInfo[itemid].Count}");
         }
