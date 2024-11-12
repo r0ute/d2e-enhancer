@@ -29,7 +29,7 @@ jobs:
     - name: Publish
       run: dotnet publish -c Release --no-build
     - name: Upload
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: com.bepinex.plugins.d2e.enhancer
         path: ~/bin/Release/publish/com.bepinex.plugins.d2e.enhancer.dll
