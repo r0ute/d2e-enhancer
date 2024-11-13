@@ -51,6 +51,7 @@ namespace D2E.src.patch
             else
             {
                 UnitySingleton<PlayerMove>.Instance.Pause();
+
                 if (PlayerMove.m_bInStorm)
                 {
                     DialogueManager.ShowAlert(LanguageManager.Instance.GetKey("StormCantEnter"), 2f);
