@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using HarmonyLib;
 using UnityEngine.UI;
 
@@ -61,7 +62,7 @@ namespace D2E.src.patch
 
             if (Town.m_Cities.TryGetValue(cityid, out TiggerStop value))
             {
-                __instance.m_CityName.text = value.TownName + AddBuildingPositions(value.Config);
+                __instance.m_CityName.text = string.Format("{0}<size=15><color=#c8beae>{1}</color></size>", value.TownName, GetBuildingPositions(value.Config));
                 Plugin.Logger.LogDebug($"UIMapCityTip: SetInfo for City {cityid}");
 
                 LayoutRebuilder.ForceRebuildLayoutImmediate(__instance.m_SelfRect);
@@ -71,23 +72,24 @@ namespace D2E.src.patch
             }
         }
 
-        private static string AddBuildingPositions(CityConfig config)
+        private static string GetBuildingPositions(CityConfig config)
         {
-            string result = "";
 
             if (config.BuildingPos.Length <= 1)
             {
-                return result;
+                return "";
             }
+
+            List<string> buildings = [""];
 
             foreach (int position in config.Building)
             {
                 if (position == 1) continue; // ignore Shop that every city has
 
-                result += "\n - " + LanguageManager.Instance.GetKey("BuildingDesc_" + position);
+                buildings.Add(LanguageManager.Instance.GetKey("BuildingDesc_" + position));
             }
 
-            return result;
+            return string.Join("\n -", buildings);
         }
 
 
