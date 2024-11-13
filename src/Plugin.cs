@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
@@ -17,6 +16,8 @@ namespace D2E.src
 
         private ConfigEntry<bool> EnableMapUIPatch;
 
+        private ConfigEntry<bool> EnableRelicPatch;
+
         private ConfigEntry<bool> EnableTradeInfoPatch;
 
         private void Awake()
@@ -25,12 +26,17 @@ namespace D2E.src
             Harmony harmony = new(MyPluginInfo.PLUGIN_GUID);
 
             TogglePatch(harmony, typeof(MapUIPatch), out EnableMapUIPatch,
-            @"**Map UI Enhancements**:
-                - Reveal cities, dialog starters, radiation zones, and relics on the map for easier navigation and discovery
-                - Display building names within cities to provide a clearer view of available facilities");
+                @"**Map UI Enhancements**:
+                    - Reveal cities, dialog starters, radiation zones, and relics on the map for easier navigation and discovery
+                    - Display building names within cities to provide a clearer view of available facilities");
+
+            TogglePatch(harmony, typeof(RelicPatch), out EnableRelicPatch,
+                @"**Relic Insights**:
+                    - View a complete list of all specific products that a relic can produce before exploring it");
+
             TogglePatch(harmony, typeof(TradeInfoPatch), out EnableTradeInfoPatch,
-            @"**Trade Information Enhancements**:
-                - Increase the trade log size limit, allowing for better tracking of recent transactions");
+                @"**Trade Information Enhancements**:
+                    - Increase the trade log size limit, allowing for better tracking of recent transactions");
             MaxTradeLogSize = Config.Bind(typeof(TradeInfoPatch).Name, "MaxTradeLogSize", 5,
              new ConfigDescription("Maximum number of items the trade log can store", new AcceptableValueRange<int>(1, 10)));
 

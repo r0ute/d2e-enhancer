@@ -9,6 +9,8 @@
   - Display building names within cities to provide a clearer view of available facilities
 - **Trade Information Enhancements**:
   - Increase the trade log size limit, allowing for better tracking of recent transactions
+- **Relic Insights**:
+  - View a complete list of all specific products that a relic can produce before exploring it
 
 ## Getting Started
 
