@@ -43,7 +43,7 @@ namespace D2E.src.patch
 
                 string relicEnterTip = string.Format(LanguageManager.Instance.GetKey("RelicEnterTip"), __instance.m_RelicName);
                 MessageBoxManager.ShowMessageBox(LanguageManager.Instance.GetKey("RelicTitle"), [
-                    string.Format("<size=21>{0}\n{1} {2}</size>", relicEnterTip,
+                    string.Format("<size=21>{0}\n{1} <color=#ff922c>{2}</color></size>", relicEnterTip,
                         LanguageManager.Instance.GetKey("Basetip_Product"), GetAllProducts(ref __instance)),
                     null
                 ], MessageBoxType.Type_Normal, __instance.EnterRelicFunction);
