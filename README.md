@@ -1,5 +1,8 @@
 # D2E Enhancer
 
+![GitHub Release Date](https://img.shields.io/github/release-date/r0ute/d2e-enhancer)
+
+
 **D2E Enhancer** is a [BepInEx](https://docs.bepinex.dev) plugin for the game _Dust to the End_. It enriches gameplay by providing a more informative map interface, detailed city information, and improved trade tracking.
 
 ## Features
