@@ -80,16 +80,24 @@ namespace D2E.src.patch
                 return "";
             }
 
-            List<string> buildings = [""];
+            List<string> buildings = [];
+            const int shopPosition = 1; // every city has a shop which should be ignored
 
             foreach (int position in config.Building)
             {
-                if (position == 1) continue; // ignore Shop that every city has
+                if (position == shopPosition) continue;
 
                 buildings.Add(LanguageManager.Instance.GetKey("BuildingDesc_" + position));
             }
 
-            return string.Join("\n -", buildings);
+            if (buildings.Count < 1)
+            {
+                return "";
+            }
+
+            const string delimiter = "\n -";
+
+            return delimiter + string.Join(delimiter, buildings);
         }
 
 
