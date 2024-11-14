@@ -14,18 +14,23 @@ namespace D2E.src
 
         internal static ConfigEntry<int> MaxTradeLogSize;
 
+        internal static ConfigEntry<int> QuickSaveSlot;
+
         private void Awake()
         {
             Logger = base.Logger;
             Harmony harmony = new(MyPluginInfo.PLUGIN_GUID);
 
-            InitPatch(harmony, typeof(GameDataPatch),
-                @"**Game Data Patch**");
-
             InitPatch(harmony, typeof(MapUIPatch),
                 @"**Map UI Enhancements**:
                     - Reveal cities, dialog starters, radiation zones, and relics on the map for easier navigation and discovery
                     - Display building names within cities to provide a clearer view of available facilities");
+
+            InitPatch(harmony, typeof(QuickSavePatch),
+                @"**Game Data Patch**:
+                    - Quick save slot accessed using the F5/F9 keys");
+            QuickSaveSlot = Config.Bind(typeof(QuickSavePatch).Name, "QuickSaveSlot", 1,
+                new ConfigDescription("Quick save slot accessed using the F5/F9 keys", new AcceptableValueRange<int>(1, 10)));
 
             InitPatch(harmony, typeof(RelicPatch),
                 @"**Relic Insights**:

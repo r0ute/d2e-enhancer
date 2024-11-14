@@ -3,13 +3,12 @@ using UnityEngine;
 
 namespace D2E.src.patch
 {
-    public class GameDataPatch
+    public class QuickSavePatch
     {
-
 
         [HarmonyPatch(typeof(MainWindow), "CheckBtns")]
         [HarmonyPostfix]
-        static void OnCheckBtns(ref MainWindow __instance, ref bool __runOriginal)
+        static void OnCheckBtns()
         {
 
             HandleSaveGame();
@@ -18,7 +17,7 @@ namespace D2E.src.patch
 
         [HarmonyPatch(typeof(PanelStart), "Update")]
         [HarmonyPostfix]
-        static void OnStart(ref MainWindow __instance, ref bool __runOriginal)
+        static void OnStart()
         {
             HandleLoadGame();
 
@@ -30,7 +29,7 @@ namespace D2E.src.patch
             if (Input.GetKeyDown(KeyCode.F5))
             {
                 Plugin.Logger.LogDebug($"MainWindow: GetKeyDown F5");
-                UnitySingleton<GameDataManager>.Instance.Save(3);
+                UnitySingleton<GameDataManager>.Instance.Save(Plugin.QuickSaveSlot.Value);
             }
         }
 
@@ -41,7 +40,7 @@ namespace D2E.src.patch
             {
                 Plugin.Logger.LogDebug($"MainWindow: GetKeyDown F9");
                 UnitySingleton<GlobalManager>.Instance.ShowLoadingPage(bShowText: true);
-                UnitySingleton<GameDataManager>.Instance.Load(3);
+                UnitySingleton<GameDataManager>.Instance.Load(Plugin.QuickSaveSlot.Value);
             }
         }
     }
