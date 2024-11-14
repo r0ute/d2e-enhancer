@@ -39,8 +39,13 @@ namespace D2E.src.patch
             if (Input.GetKeyDown(KeyCode.F9))
             {
                 Plugin.Logger.LogDebug($"MainWindow: GetKeyDown F9");
-                UnitySingleton<GlobalManager>.Instance.ShowLoadingPage(bShowText: true);
-                UnitySingleton<GameDataManager>.Instance.Load(Plugin.QuickSaveSlot.Value);
+
+                if (UnitySingleton<GameDataManager>.Instance.GetBinarySaveFileDetail(Plugin.QuickSaveSlot.Value) != null)
+                {
+
+                    UnitySingleton<GlobalManager>.Instance.ShowLoadingPage(bShowText: true);
+                    UnitySingleton<GameDataManager>.Instance.Load(Plugin.QuickSaveSlot.Value);
+                }
             }
         }
     }
