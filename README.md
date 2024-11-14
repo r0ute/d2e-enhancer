@@ -16,7 +16,7 @@
 - **Relic Insights**:
   - View a complete list of all specific products that a relic can produce before exploring it
 - **Quick Save & Load Functionality**:
-  - Quick save and load with F5 and F9 keys, featuring a configurable quick save slot option.
+  - Quick save and load with F5 and F9 keys, featuring a configurable quick save slot option
 
 ## Getting Started
 
