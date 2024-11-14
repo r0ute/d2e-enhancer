@@ -68,7 +68,7 @@ namespace D2E.src.patch
 
         private static string GetAllProducts(ref SingleRelic __instance)
         {
-            SortedSet<string> products = [];
+            HashSet<string> products = [];
 
             foreach (int baseId in __instance.m_Config.BaseID)
             {
