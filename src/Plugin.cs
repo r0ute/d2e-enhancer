@@ -28,7 +28,7 @@ namespace D2E.src
 
             InitPatch(harmony, typeof(QuickSavePatch),
                 @"**Game Data Patch**:
-                    - Quick save slot accessed using the F5/F9 keys");
+                    - Quick save slot number accessed with the F5 and F9 keys");
             QuickSaveSlot = Config.Bind(typeof(QuickSavePatch).Name, "QuickSaveSlot", 1,
                 new ConfigDescription("Quick save slot accessed using the F5/F9 keys", new AcceptableValueRange<int>(1, 10)));
 
