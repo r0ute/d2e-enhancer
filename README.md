@@ -17,6 +17,11 @@
   - View a complete list of all specific products that a relic can produce before exploring it
 - **Quick Save & Load Functionality**:
   - Quick save and load with F5 and F9 keys, featuring a configurable quick save slot option
+- **Event Notifications**:
+  - Disable level-up notifications for team members who are assigned to the back row non-combat slots
+- **Keyboard Configuration**:
+  - Allow configuration of additional keys for inventory and map with plugin support (defaults: Mouse3 and Mouse4)
+
 
 ## Getting Started
 

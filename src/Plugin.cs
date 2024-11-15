@@ -27,10 +27,12 @@ namespace D2E.src
             Harmony harmony = new(MyPluginInfo.PLUGIN_GUID);
 
             InitPatch(harmony, typeof(EventNotificationPatch),
-                @"Event Notifications Enhancements");
+                @"**Event Notifications**:
+                    - Disable level-up notifications for team members who are assigned to the back row non-combat slots");
 
             InitPatch(harmony, typeof(KeyboardConfigPatch),
-                @"Keyboard Configuration");
+                @"- **Keyboard Configuration**:
+                    - Allow configuration of additional keys for inventory and map with plugin support (defaults: Mouse3 and Mouse4)");
             KeyInventory = Config.Bind(typeof(KeyboardConfigPatch).Name, "Inventory key",
                 new KeyboardShortcut(KeyCode.Mouse4));
             KeyMap = Config.Bind(typeof(KeyboardConfigPatch).Name, "Map key",
