@@ -32,7 +32,7 @@ namespace D2E.src
 
             InitPatch(harmony, typeof(KeyboardConfigPatch),
                 @"- **Keyboard Configuration**:
-                    - Allow configuration of additional keys for inventory and map with plugin support (defaults: Mouse3 and Mouse4)");
+                    - Allow configuration of additional keys for inventory and map, with Mouse3 and Mouse4 as the default settings");
             KeyInventory = Config.Bind(typeof(KeyboardConfigPatch).Name, "Inventory key",
                 new KeyboardShortcut(KeyCode.Mouse4));
             KeyMap = Config.Bind(typeof(KeyboardConfigPatch).Name, "Map key",

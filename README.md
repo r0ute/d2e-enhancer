@@ -20,8 +20,7 @@
 - **Event Notifications**:
   - Disable level-up notifications for team members who are assigned to the back row non-combat slots
 - **Keyboard Configuration**:
-  - Allow configuration of additional keys for inventory and map with plugin support (defaults: Mouse3 and Mouse4)
-
+  - Allow configuration of additional keys for inventory and map, with Mouse3 and Mouse4 as the default settings
 
 ## Getting Started
 
