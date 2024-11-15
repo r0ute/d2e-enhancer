@@ -4,6 +4,7 @@ using BepInEx.Configuration;
 using BepInEx.Logging;
 using D2E.src.patch;
 using HarmonyLib;
+using UnityEngine;
 
 namespace D2E.src
 {
@@ -11,6 +12,10 @@ namespace D2E.src
     public class Plugin : BaseUnityPlugin
     {
         internal static new ManualLogSource Logger;
+
+        internal static ConfigEntry<KeyboardShortcut> KeyInventory;
+
+        internal static ConfigEntry<KeyboardShortcut> KeyMap;
 
         internal static ConfigEntry<int> MaxTradeLogSize;
 
@@ -21,7 +26,15 @@ namespace D2E.src
             Logger = base.Logger;
             Harmony harmony = new(MyPluginInfo.PLUGIN_GUID);
 
-            InitPatch(harmony, typeof(EventNotificationPatch), "Event Notifications Enhancements");
+            InitPatch(harmony, typeof(EventNotificationPatch),
+                @"Event Notifications Enhancements");
+
+            InitPatch(harmony, typeof(KeyboardConfigPatch),
+                @"Keyboard Configuration");
+            KeyInventory = Config.Bind(typeof(KeyboardConfigPatch).Name, "Inventory key",
+                new KeyboardShortcut(KeyCode.Mouse4));
+            KeyMap = Config.Bind(typeof(KeyboardConfigPatch).Name, "Map key",
+                new KeyboardShortcut(KeyCode.Mouse3));
 
             InitPatch(harmony, typeof(MapUIPatch),
                 @"**Map UI Enhancements**:
