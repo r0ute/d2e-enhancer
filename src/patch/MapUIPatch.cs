@@ -19,6 +19,18 @@ namespace D2E.src.patch
             }
         }
 
+        [HarmonyPatch(typeof(MiniMapUI), nameof(MiniMapUI.HideCity))]
+        [HarmonyPrefix]
+        static void OnHideCity(TiggerStop city, ref MiniMapUI __instance, ref bool __runOriginal)
+        {
+            if (!city.m_bDiscovered)
+            {
+                __runOriginal = false;
+                __instance.AddCity(city);
+                Plugin.Logger.LogDebug($"MiniMapUI: AddCity {city.TownName}");
+            }
+        }
+
         [HarmonyPatch(typeof(MapUI), nameof(MapUI.HideMapDialogueStarter))]
         [HarmonyPrefix]
         static void OnHideMapDialogueStarter(MapDialogueStarter starter, ref MapUI __instance, ref bool __runOriginal)
@@ -28,6 +40,18 @@ namespace D2E.src.patch
                 __runOriginal = false;
                 __instance.AddMapDialogueStarter(starter);
                 Plugin.Logger.LogDebug($"MapUI: AddMapDialogueStarter {starter.m_ShowName}");
+            }
+        }
+
+        [HarmonyPatch(typeof(MiniMapUI), nameof(MiniMapUI.HideMapDialogueStarter))]
+        [HarmonyPrefix]
+        static void OnHideMapDialogueStarter(MapDialogueStarter starter, ref MiniMapUI __instance, ref bool __runOriginal)
+        {
+            if (starter.gameObject.activeSelf && !starter.ShowInMap)
+            {
+                __runOriginal = false;
+                __instance.AddMapDialogueStarter(starter);
+                Plugin.Logger.LogDebug($"MiniMapUI: AddMapDialogueStarter {starter.m_ShowName}");
             }
         }
 
@@ -52,6 +76,18 @@ namespace D2E.src.patch
                 __runOriginal = false;
                 __instance.AddRelic(relic);
                 Plugin.Logger.LogDebug($"MapUI: AddRelic {relic.m_RelicName}");
+            }
+        }
+
+        [HarmonyPatch(typeof(MiniMapUI), nameof(MiniMapUI.HideRelic))]
+        [HarmonyPrefix]
+        static void OnHideRelic(SingleRelic relic, ref MiniMapUI __instance, ref bool __runOriginal)
+        {
+            if (!relic.Discovered)
+            {
+                __runOriginal = false;
+                __instance.AddRelic(relic);
+                Plugin.Logger.LogDebug($"MiniMapUI: AddRelic {relic.m_RelicName}");
             }
         }
 
