@@ -28,14 +28,17 @@ namespace D2E.src.patch
 
         private static bool ShowLevelUpNotification()
         {
-            const int doctorMechanicTraderProfession = 3;
 
-            foreach (int member in CharacterManager.Instance.m_MyTeam)
+            const int nonCombatPosX = 2;
+
+            foreach (int memberId in CharacterManager.Instance.m_MyTeam)
             {
-                if (CharacterManager.Instance.m_AllCharacters[member].m_Attr.CanUpLevel
-                && CharacterManager.Instance.m_AllCharacters[member].m_Attr.m_nProfessionId < doctorMechanicTraderProfession)
+                var member = CharacterManager.Instance.m_AllCharacters[memberId];
+
+                if (member.m_Pos.x != nonCombatPosX && member.m_Attr.CanUpLevel)
                 {
-                    Plugin.Logger.LogDebug($"ShowLevelUpNotification member={CharacterManager.Instance.m_AllCharacters[member].m_Attr.m_PlayerName}");
+
+                    Plugin.Logger.LogDebug($"ShowLevelUpNotification name={member.m_Attr.m_PlayerName}, position={member.m_Pos}");
                     return true;
                 }
 
