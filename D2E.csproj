@@ -4,7 +4,7 @@
     <TargetFramework>net46</TargetFramework>
     <AssemblyName>com.bepinex.plugins.d2e.enhancer</AssemblyName>
     <Product>D2E Enhancer Plugin</Product>
-    <Version>1.2.0</Version>
+    <Version>1.3.0</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
     <RestoreAdditionalProjectSources>

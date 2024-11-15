@@ -21,6 +21,8 @@ namespace D2E.src
             Logger = base.Logger;
             Harmony harmony = new(MyPluginInfo.PLUGIN_GUID);
 
+            InitPatch(harmony, typeof(EventNotificationPatch), "Event Notifications Enhancements");
+
             InitPatch(harmony, typeof(MapUIPatch),
                 @"**Map UI Enhancements**:
                     - Reveal cities, dialog starters, radiation zones, and relics on the map for easier navigation and discovery
