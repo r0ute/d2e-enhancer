@@ -71,7 +71,7 @@ namespace D2E.src.patch
             });
         }
 
-        [HarmonyPatch(typeof(InfoBoxUI), nameof(InfoBoxUI.AwakeFunction))]
+        [HarmonyPatch(typeof(InfoBoxUI), "AwakeFunction")]
         [HarmonyPrefix]
         static void BeforeAwake(ref InfoBoxUI __instance)
         {
